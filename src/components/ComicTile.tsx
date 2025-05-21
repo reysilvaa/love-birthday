@@ -308,7 +308,7 @@ const ComicTile = () => {
               >
                 <div className="absolute inset-0 z-0">
                   <Image
-                    src="/images/comic-panel/1.png"
+                    src="/images/comic-panel/4.png"
                     alt="Panel 4"
                     fill
                     style={{ objectFit: 'cover' }}
@@ -323,7 +323,7 @@ const ComicTile = () => {
               >
                 <div className="absolute inset-0 z-0">
                   <Image
-                    src="/images/comic-panel/2.png"
+                    src="/images/comic-panel/5.png"
                     alt="Panel 5"
                     fill
                     style={{ objectFit: 'cover' }}
