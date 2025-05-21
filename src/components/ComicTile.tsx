@@ -120,7 +120,7 @@ const ComicTile = () => {
             {/* Tombol kembali ke panel komik */}
             <motion.button
               onClick={handleBack}
-              className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 bg-white border-2 border-black rounded-full px-4 py-2 shadow-lg hover:bg-gray-100"
+              className="fixed bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-50 bg-white border-4 border-black rounded-full px-3 py-1 md:px-4 md:py-2 shadow-md hover:shadow-lg transition-all text-sm md:text-base font-bold"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               initial={{ y: 100, opacity: 0 }}

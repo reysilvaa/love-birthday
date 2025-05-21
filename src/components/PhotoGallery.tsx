@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Card } from '@/components/ui/card';
 import { X } from 'lucide-react';
 // Import Image akan digunakan nanti saat menambahkan foto asli
 // import Image from 'next/image';
@@ -65,10 +64,24 @@ const PhotoGallery = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative">
-      <div className="max-w-4xl w-full px-4">
+    <div className="w-full h-full flex flex-col items-center justify-center relative bg-[#fef8e5]">
+      {/* Comic Style Frame Border - responsif untuk mobile */}
+      <div className="hidden md:block absolute inset-10 border-[10px] border-black rounded-[40px] z-5"></div>
+      <div className="hidden md:block absolute inset-[46px] border-[5px] border-white rounded-[30px] opacity-70 z-5"></div>
+      
+      {/* Frame untuk mobile - lebih tipis dan dengan padding yang lebih kecil */}
+      <div className="md:hidden absolute inset-2 border-[5px] border-black rounded-[20px] z-5"></div>
+      <div className="md:hidden absolute inset-[13px] border-[2px] border-white rounded-[15px] opacity-70 z-5"></div>
+      
+      {/* Halftone pattern overlay */}
+      <div className="absolute inset-0 bg-repeat opacity-5 mix-blend-multiply z-0" style={{ 
+        backgroundImage: `radial-gradient(#000 1px, transparent 1px)`,
+        backgroundSize: '15px 15px'
+      }}></div>
+      
+      <div className="max-w-4xl w-full px-4 md:px-16 pt-8 pb-4 relative z-10">
         <motion.h2 
-          className="text-3xl font-bold text-primary-800 text-center mb-3"
+          className="text-2xl md:text-3xl font-bold text-black text-center mb-4 md:mb-6"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -90,24 +103,17 @@ const PhotoGallery = () => {
               whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.3 }}
             >
-              <Card className="overflow-hidden cursor-pointer h-24 sm:h-32 relative shadow-md hover:shadow-lg transition-shadow duration-300 border-primary-200">
+              <div className="overflow-hidden cursor-pointer h-24 sm:h-32 relative shadow-md hover:shadow-lg transition-shadow border-4 border-black rounded-lg">
                 <div className="relative h-full w-full overflow-hidden">
-                  {/* Gunakan placeholder sementara - Anda perlu menambahkan foto nyata nanti */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-love to-love-dark opacity-80 flex items-center justify-center">
-                    <span className="text-white font-bold text-xs sm:text-sm text-center px-2">{photo.alt}</span>
+                  {/* Comic style placeholder dengan pola warna yang lebih sesuai */}
+                  <div className={`absolute inset-0 ${index % 3 === 0 ? 'bg-[#FFD8E6]' : index % 3 === 1 ? 'bg-[#FFECB3]' : 'bg-[#C8E6C9]'} flex items-center justify-center`}>
+                    <span className="text-black font-bold text-xs sm:text-sm text-center px-2">{photo.alt}</span>
                   </div>
-                  {/* Ketika Anda memiliki foto asli, gunakan berikut:
-                  <Image 
-                    src={photo.src} 
-                    alt={photo.alt} 
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  /> */}
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-black/70 to-transparent">
-                  <p className="text-white font-medium text-xs sm:text-sm truncate">{photo.caption}</p>
+                <div className="absolute bottom-0 left-0 right-0 p-1 bg-white border-t-2 border-black">
+                  <p className="text-black font-medium text-xs sm:text-sm truncate">{photo.caption}</p>
                 </div>
-              </Card>
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -122,30 +128,29 @@ const PhotoGallery = () => {
               onClick={() => setSelectedPhoto(null)}
             >
               <motion.div 
-                className="relative max-w-lg w-full bg-white rounded-lg overflow-hidden"
+                className="relative max-w-lg w-full bg-white rounded-lg overflow-hidden border-4 border-black"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="relative h-64 sm:h-80">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-love to-love-dark opacity-80 flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">{photos[selectedPhoto].alt}</span>
-                  </div>
-                  {/* <Image 
-                    src={photos[selectedPhoto].src} 
-                    alt={photos[selectedPhoto].alt} 
-                    fill
-                    className="object-contain"
-                  /> */}
+                {/* Comic style header */}
+                <div className="bg-black py-2 px-4">
+                  <h3 className="text-white font-bold">Kenangan</h3>
                 </div>
-                <div className="p-4 bg-white">
-                  <h3 className="text-lg font-bold text-primary-700">{photos[selectedPhoto].alt}</h3>
-                  <p className="text-gray-700 text-sm">{photos[selectedPhoto].caption}</p>
+                
+                <div className="relative h-64 sm:h-80">
+                  <div className={`absolute inset-0 ${selectedPhoto % 3 === 0 ? 'bg-[#FFD8E6]' : selectedPhoto % 3 === 1 ? 'bg-[#FFECB3]' : 'bg-[#C8E6C9]'} flex items-center justify-center`}>
+                    <span className="text-black font-bold text-xl">{photos[selectedPhoto].alt}</span>
+                  </div>
+                </div>
+                <div className="p-4 bg-white border-t-4 border-black">
+                  <h3 className="text-lg font-bold text-black">{photos[selectedPhoto].alt}</h3>
+                  <p className="text-black text-sm">{photos[selectedPhoto].caption}</p>
                 </div>
                 <button 
-                  className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors"
+                  className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition-colors"
                   onClick={() => setSelectedPhoto(null)}
                 >
                   <X size={16} />
