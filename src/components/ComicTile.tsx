@@ -32,7 +32,7 @@ const BackgroundMusic = () => {
 
 // Definisi halaman yang tersedia
 const pages = [
-  { id: 'hero', component: Hero, title: 'Beranda', subtitle: 'Tiba-tiba...', color: 'bg-gradient-radial from-yellow-300 to-orange-400' },
+  { id: 'hero', component: Hero, title: 'Beranda', subtitle: 'Awalnya...', color: 'bg-gradient-radial from-yellow-300 to-orange-400' },
   { id: 'letter', component: Letter, title: 'Pesan', subtitle: 'Coba lihat...', color: 'bg-gradient-radial from-sky-300 to-sky-500' },
   { id: 'photos', component: PhotoGallery, title: 'Galeri', subtitle: 'Kenangan Indah', color: 'bg-gradient-radial from-green-200 to-green-400' },
   { id: 'timeline', component: Timeline, title: 'Ucapan', subtitle: 'Perjalanan Cinta', color: 'bg-gradient-radial from-red-200 to-red-400' },
@@ -264,7 +264,7 @@ const ComicTile = () => {
                     priority
                   />
                 </div>
-                <ComicText text="Tiba-tiba..." position="top-left" />
+                <ComicText text="Awalnya..." position="top-left" />
                 <ComicText text="...sesuatu yang indah terjadi" position="bottom-right" />
               </div>
               

@@ -83,7 +83,7 @@ const Message = () => {
       >
         {/* Stamp and Postal Elements */}
         <div className="absolute top-4 right-4 flex flex-col items-center">
-          <motion.div 
+          <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.3, duration: 0.4 }}
@@ -91,8 +91,8 @@ const Message = () => {
           >
             <FaStamp className="text-3xl text-[#881337]" />
           </motion.div>
-          
-          <motion.div 
+      
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.7 }}
             transition={{ delay: 0.6, duration: 0.4 }}
@@ -104,7 +104,7 @@ const Message = () => {
             </div>
           </motion.div>
         </div>
-
+        
         {/* Letter Content */}
         <div className="pt-8 px-6 pb-6 md:px-10 md:pt-10 md:pb-8">
           {/* Letter Header */}
@@ -119,11 +119,11 @@ const Message = () => {
           </div>
           
           {/* Letter Body */}
-          <motion.div
-            ref={ref}
-            variants={containerVariants}
-            initial="hidden"
-            animate={controls}
+        <motion.div 
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
             className="space-y-6 font-serif text-black tracking-wide"
             style={{ 
               lineHeight: "1.8",
@@ -132,7 +132,7 @@ const Message = () => {
             }}
           >
             <motion.p 
-              variants={itemVariants} 
+              variants={itemVariants}
               className="mb-6 font-semibold text-black"
               style={{ letterSpacing: "0.5px" }}
             >
@@ -154,37 +154,37 @@ const Message = () => {
                 {index < messages.length - 1 && (
                   <div className="w-1/3 h-px bg-black mx-auto my-4"></div>
                 )}
-              </motion.div>
+                  </motion.div>
             ))}
             
             <motion.div variants={itemVariants} className="pt-8 text-base text-black">
               <p>Dengan segenap cinta,</p>
               <p className="mt-6 font-semibold italic">Kekasihmu</p>
             </motion.div>
-          </motion.div>
+        </motion.div>
         </div>
-
+        
         {/* Decorative Envelope Border */}
         <div className="border-t border-dashed border-gray-300 mt-2">
           <div className="flex justify-center -mt-3">
-            <motion.div 
+        <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2 }}
               className="bg-white px-4"
             >
               <FaEnvelope className="text-gray-400" />
-            </motion.div>
+              </motion.div>
           </div>
-        </div>
-
+          </div>
+          
         {/* Footer */}
-        <motion.div 
+          <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.5 }}
           className="text-center py-3 text-sm text-black"
-        >
+          >
           <FaHeart className="inline text-[#881337] mx-1" /> Aku mencintaimu, Annisa! <FaHeart className="inline text-[#881337] mx-1" />
         </motion.div>
       </motion.div>
