@@ -155,18 +155,18 @@ const ComicTile = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="p-4 md:p-6 max-w-7xl mx-auto z-10 overflow-y-auto"
+            className="p-2 md:p-8 w-full max-w-[1400px] mx-auto z-10 overflow-y-auto"
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8">
-              Perjalanan Cinta Kita
+            <h1 className="text-3xl md:text-5xl font-bold text-center mb-4 md:mb-10 mt-10">
+              Sebuah Kisah #1
             </h1>
             
             {/* Comic container dengan CSS Grid layout */}
-            <div className="grid grid-cols-6 md:grid-cols-12 auto-rows-[minmax(100px,auto)] gap-3 md:gap-3 md:px-1">
+            <div className="grid grid-cols-6 md:grid-cols-12 auto-rows-[minmax(100px,auto)] gap-2 md:gap-6">
               
               {/* Panel 1 - Bigger panel */}
               <div 
-                className="col-span-6 md:col-span-6 row-span-2 md:row-span-3 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[300px] md:h-auto"
+                className="col-span-6 md:col-span-8 row-span-2 md:row-span-2 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[300px] md:h-[400px]"
                 onClick={() => handlePanelClick('hero')}
               >
                 <div className="absolute inset-0 z-0">
@@ -178,13 +178,13 @@ const ComicTile = () => {
                     priority
                   />
                 </div>
-                <ComicText text="Awalnya..." position="top-left" />
-                <ComicText text="...sesuatu yang indah terjadi" position="bottom-right" />
+                <ComicText text="Awalnya..." position="top-left" className="md:text-xl" />
+                <ComicText text="...sesuatu yang indah terjadi" position="bottom-right" className="md:text-xl" />
               </div>
               
               {/* Panel 2 */}
               <div 
-                className="col-span-3 md:col-span-6 md:col-start-7 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[150px] md:h-[180px]"
+                className="col-span-3 md:col-span-4 md:col-start-9 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[150px] md:h-[190px]"
                 onClick={() => handlePanelClick('letter')}
               >
                 <div className="absolute inset-0 z-0">
@@ -195,13 +195,13 @@ const ComicTile = () => {
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
-                <ComicText text="Pesan untukmu..." position="top-left" />
-                <ComicText text="...penuh cinta" position="bottom-right" />
+                <ComicText text="Pesan untukmu..." position="top-left" className="md:text-xl" />
+                <ComicText text="...penuh cinta" position="bottom-right" className="md:text-xl" />
               </div>
               
               {/* Panel 3 */}
               <div 
-                className="col-span-3 md:col-span-6 md:col-start-7 md:row-start-2 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer flex items-center justify-center transform hover:scale-[1.01] transition-transform h-[150px] md:h-[180px]"
+                className="col-span-3 md:col-span-4 md:col-start-9 md:row-start-2 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer flex items-center justify-center transform hover:scale-[1.01] transition-transform h-[150px] md:h-[190px]"
                 onClick={() => handlePanelClick('photos')}
               >
                 <div className="absolute inset-0 z-0">
@@ -212,12 +212,12 @@ const ComicTile = () => {
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
-                <ComicSpeech text="Kenangan indah kita" className="mx-auto my-auto" />
+                <ComicSpeech text="Kenangan indah kita" className="mx-auto my-auto md:text-xl" />
               </div>
-              
-              {/* Panel 4 */}
+
+              {/* Panel 4 - Panel Tengah Kiri */}
               <div 
-                className="col-span-3 md:col-span-4 md:col-start-1 md:row-start-4 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[150px] md:h-[180px]"
+                className="col-span-3 md:col-span-4 md:col-start-1 md:row-start-3 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[150px] md:h-[190px]"
                 onClick={() => handlePanelClick('timeline')}
               >
                 <div className="absolute inset-0 z-0">
@@ -228,12 +228,12 @@ const ComicTile = () => {
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
-                <ComicText text="Perjalanan cinta kita..." position="bottom-right" />
+                <ComicText text="Perjalanan cinta kita..." position="bottom-right" className="md:text-xl" />
               </div>
-              
-              {/* Panel 5 */}
+
+              {/* Panel 5 - Panel Tengah Kanan */}
               <div 
-                className="col-span-3 md:col-span-4 md:col-start-5 md:row-start-4 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[150px] md:h-[180px]"
+                className="col-span-3 md:col-span-4 md:col-start-5 md:row-start-3 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[150px] md:h-[190px]"
                 onClick={() => handlePanelClick('future')}
               >
                 <div className="absolute inset-0 z-0">
@@ -244,13 +244,13 @@ const ComicTile = () => {
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
-                <ComicText text="Masa depan kita..." position="top-left" />
-                <ComicText text="...penuh petualangan" position="bottom-right" />
+                <ComicText text="Masa depan kita..." position="top-left" className="md:text-xl" />
+                <ComicText text="...penuh petualangan" position="bottom-right" className="md:text-xl" />
               </div>
               
               {/* Panel 6 - THE END */}
               <div 
-                className="col-span-6 md:col-span-4 md:col-start-9 md:row-start-3 md:row-span-2 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[150px] md:h-auto"
+                className="col-span-6 md:col-span-4 md:col-start-9 md:row-start-3 md:row-span-2 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[150px] md:h-[400px]"
                 onClick={() => handlePanelClick('birthday')}
               >
                 <div className="absolute inset-0 z-0">
@@ -261,7 +261,7 @@ const ComicTile = () => {
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
-                <ComicText text="SELAMAT ULANG TAHUN" position="bottom-right" className="text-xl font-bold" />
+                <ComicText text="SELAMAT ULANG TAHUN" position="bottom-right" className="text-xl md:text-2xl font-bold" />
               </div>
             </div>
           </motion.div>
@@ -291,4 +291,4 @@ const ComicTile = () => {
   );
 };
 
-export default ComicTile; 
+export default ComicTile;
