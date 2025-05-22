@@ -3,12 +3,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Hero from './Hero';
-import Message from './Message';
 import PhotoGallery from './PhotoGallery';
 import Timeline from './Timeline';
 import { useClientOnly } from '@/hooks/useClientOnly';
 import { useClickSound, useBackgroundMusic } from '@/hooks/useAudio';
 import Image from 'next/image';
+import Letter from './Letter';
 
 // Komponen untuk memutar efek suara klik
 const AudioPlayer = () => {
@@ -33,7 +33,7 @@ const BackgroundMusic = () => {
 // Definisi halaman yang tersedia
 const pages = [
   { id: 'hero', component: Hero, title: 'Beranda', subtitle: 'Tiba-tiba...', color: 'bg-gradient-radial from-yellow-300 to-orange-400' },
-  { id: 'message', component: Message, title: 'Pesan', subtitle: 'Coba lihat...', color: 'bg-gradient-radial from-sky-300 to-sky-500' },
+  { id: 'letter', component: Letter, title: 'Pesan', subtitle: 'Coba lihat...', color: 'bg-gradient-radial from-sky-300 to-sky-500' },
   { id: 'photos', component: PhotoGallery, title: 'Galeri', subtitle: 'Kenangan Indah', color: 'bg-gradient-radial from-green-200 to-green-400' },
   { id: 'timeline', component: Timeline, title: 'Ucapan', subtitle: 'Perjalanan Cinta', color: 'bg-gradient-radial from-red-200 to-red-400' },
 ];
@@ -271,7 +271,7 @@ const ComicTile = () => {
               {/* Panel 2 */}
               <div 
                 className="comic-panel panel-2 border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform"
-                onClick={() => handlePanelClick('message')}
+                onClick={() => handlePanelClick('letter')}
               >
                 <div className="absolute inset-0 z-0">
                   <Image

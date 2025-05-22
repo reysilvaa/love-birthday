@@ -343,6 +343,19 @@ const Hero: FC = () => {
       <div className="md:hidden absolute inset-[13px] border-[2px] border-white rounded-[15px] opacity-70 z-5"></div>
       
       <div className="relative w-full max-w-xl mx-auto flex flex-col items-center justify-center gap-4 px-4 md:px-6 pt-8 pb-4 z-10">
+        {/* Comic-style "POW" burst effect */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 w-64 h-64"
+          initial={{ scale: 0, rotate: -20 }}
+          animate={{ scale: [0, 1, 0.9], rotate: [-20, 0] }}
+          transition={{ delay: 0.5, duration: 0.7 }}
+        >
+          <svg viewBox="0 0 100 100" className="w-full h-full">
+            <path d="M50,0 L55,35 L90,30 L60,50 L95,70 L60,65 L65,100 L50,70 L35,100 L40,65 L5,70 L40,50 L10,30 L45,35 Z" 
+              fill="#FFD8E6" stroke="#000000" strokeWidth="3" />
+          </svg>
+        </motion.div>
+        
         {/* Hero Heart Icon */}
         <motion.div
           style={{ scale, y: y1 }}
@@ -358,33 +371,20 @@ const Hero: FC = () => {
         >
           {/* Comic-style multi-layered heart */}
           <div className="relative">
-            <FaHeart className="heart text-black mx-auto drop-shadow-xl" size={65} />
+            <FaHeart className="heart text-black mx-auto drop-shadow-xl" size={75} />
             <motion.div 
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             >
-              <FaHeart className="heart text-[#FF80AB]" size={60} />
-            </motion.div>
-            
-            {/* Comic-style "POW" burst behind the heart */}
-            <motion.div
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10 w-32 h-32"
-              initial={{ scale: 0, rotate: -20 }}
-              animate={{ scale: [0, 1, 0.9], rotate: [-20, 0] }}
-              transition={{ delay: 1, duration: 0.7 }}
-            >
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <path d="M50,0 L55,35 L90,30 L60,50 L95,70 L60,65 L65,100 L50,70 L35,100 L40,65 L5,70 L40,50 L10,30 L45,35 Z" 
-                  fill="#FFD8E6" stroke="#000000" strokeWidth="3" />
-              </svg>
+              <FaHeart className="heart text-[#FF80AB]" size={70} />
             </motion.div>
           </div>
         </motion.div>
         
         {/* Comic-style Header */}
         <motion.h1 
-          className="text-4xl md:text-5xl font-bold text-black mb-2 text-center relative"
+          className="text-4xl md:text-6xl font-bangers text-black mb-2 text-center relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
@@ -399,7 +399,7 @@ const Hero: FC = () => {
             style={{ backgroundSize: '200% auto' }}
           >
             <span className="relative drop-shadow-[0_2px_0px_rgba(0,0,0,0.3)]">
-              Selamat Ulang Tahun!
+              Tiba-tiba...
             </span>
             
             {/* Comic-style highlight accent */}
@@ -431,13 +431,13 @@ const Hero: FC = () => {
         >
           <ComicBubble delay={1.4}>
             <motion.p 
-              className="text-lg md:text-xl text-black text-center font-comic relative z-10"
+              className="text-xl md:text-2xl text-black text-center font-comic relative z-10 font-bangers"
               animate={{ 
                 scale: [1, 1.02, 1],
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              Untuk orang yang paling spesial di hatiku! ❤️
+              Sesuatu yang indah terjadi!
             </motion.p>
           </ComicBubble>
         </motion.div>
@@ -457,11 +457,20 @@ const Hero: FC = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 2.0, duration: 0.4 }}
           >
-            COUNTDOWN!
+            ULTAH SPESIAL!
           </motion.div>
           
           <CountdownTimer targetDate={targetDate} />
         </motion.div>
+
+        <motion.h2
+          className="text-2xl md:text-3xl font-bold text-center mt-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.2, duration: 0.5 }}
+        >
+          Selamat Ulang Tahun!
+        </motion.h2>
         
       </div>
     </div>
