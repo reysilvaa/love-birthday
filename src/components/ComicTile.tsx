@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Hero from './Hero';
 import PhotoGallery from './PhotoGallery';
@@ -11,6 +11,7 @@ import Image from 'next/image';
 import Letter from './Letter';
 import Future from './Future';
 import Birthday from './Birthday';
+import { FaBook, FaHeart } from 'react-icons/fa';
 
 // Komponen untuk memutar efek suara klik
 const AudioPlayer = () => {
@@ -77,9 +78,91 @@ const ComicSpeech: React.FC<ComicSpeechProps> = ({ text, className = '' }) => (
   </motion.div>
 );
 
+// Tombol "Baca Kisah" dengan loading bar
+const LoadingButton = ({ onStart }: { onStart: () => void }) => {
+  const [progress, setProgress] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prevProgress) => {
+        const newProgress = prevProgress + 2;
+        if (newProgress >= 100) {
+          clearInterval(interval);
+          setIsComplete(true);
+          setTimeout(() => {
+            onStart();
+          }, 500);
+          return 100;
+        }
+        return newProgress;
+      });
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, [onStart]);
+
+  return (
+    <div className="flex flex-col items-center gap-8">
+      <motion.div 
+        className="relative inline-block cursor-pointer"
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        whileHover={isComplete ? { scale: 1.05 } : {}}
+        whileTap={isComplete ? { scale: 0.95 } : {}}
+        onClick={isComplete ? onStart : undefined}
+        transition={{ type: "spring", delay: 0.2 }}
+      >
+        <div className={`${isComplete ? 'bg-[#BBDEFB]' : 'bg-[#FFD8E6]'} border-4 border-black px-6 py-3 rounded-lg font-bold text-xl shadow-md transform -rotate-1 flex items-center gap-3 relative overflow-hidden`}>
+          <FaBook className="text-black" size={24} />
+          <span>{isComplete ? 'Mulai Membaca!' : 'Baca Kisah Kita'}</span>
+          <FaHeart className="text-[#FF80AB]" size={20} />
+          
+          {/* Dekorasi */}
+          <div className="absolute top-0 right-0 w-0 h-0 border-t-8 border-r-8 border-t-black border-r-black" />
+        </div>
+        
+        <motion.div 
+          className="absolute -top-2 -right-2 w-6 h-6 bg-[#FFECB3] border-2 border-black rounded-full flex items-center justify-center font-bold text-xs z-10"
+          initial={{ rotate: 0 }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+        >
+          !
+        </motion.div>
+      </motion.div>
+      
+      {/* Loading bar dengan komik style */}
+      {!isComplete && (
+        <motion.div 
+          className="w-64 h-8 bg-white border-4 border-black rounded-lg overflow-hidden relative"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <motion.div 
+            className="h-full bg-gradient-to-r from-[#BBDEFB] via-[#FFD8E6] to-[#FFECB3]"
+            initial={{ width: '0%' }}
+            animate={{ width: `${progress}%` }}
+            transition={{ ease: "easeInOut" }}
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="font-bold text-black text-sm">{progress}%</span>
+          </div>
+          
+          {/* Comic style corner */}
+          <div className="absolute bottom-0 left-0 w-0 h-0 border-b-6 border-l-6 border-b-black border-l-black" />
+          <div className="absolute top-0 right-0 w-0 h-0 border-t-6 border-r-6 border-t-black border-r-black" />
+        </motion.div>
+      )}
+    </div>
+  );
+};
+
 // Komponen utama Comic Tile
 const ComicTile = () => {
   const [selectedPage, setSelectedPage] = useState<string | null>(null);
+  const [showContent, setShowContent] = useState(false);
   const isClient = useClientOnly();
 
   const handlePanelClick = (pageId: string) => {
@@ -90,12 +173,49 @@ const ComicTile = () => {
     setSelectedPage(null);
   };
 
-  // Skeleton loader di server-side
-  if (!isClient) {
+  const handleStart = () => {
+    setShowContent(true);
+  };
+
+  // Skeleton loader di server-side atau loading screen di client-side
+  if (!isClient || !showContent) {
     return (
-      <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-primary-50 to-primary-100">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-primary-800">Memuat...</div>
+      <div className="h-screen w-screen overflow-hidden bg-[#fef8e5] flex flex-col items-center justify-center">
+        {/* Comic Style Frame Border */}
+        <div className="absolute inset-10 border-[10px] border-black rounded-[40px] z-5"></div>
+        <div className="absolute inset-[46px] border-[5px] border-white rounded-[30px] opacity-70 z-5"></div>
+        
+        {/* Halftone pattern overlay */}
+        <div className="absolute inset-0 bg-repeat opacity-5 mix-blend-multiply z-0" style={{ 
+          backgroundImage: `radial-gradient(#000 1px, transparent 1px)`,
+          backgroundSize: '15px 15px'
+        }}></div>
+        
+        <div className="relative z-10 flex flex-col items-center gap-8">
+          <motion.h1 
+            className="text-4xl md:text-6xl font-bold text-black text-center mb-6"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="relative inline-block">
+              Perjalanan Cinta Kita
+              <motion.div 
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-black"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+              />
+            </span>
+          </motion.h1>
+          
+          {isClient && <LoadingButton onStart={handleStart} />}
+          
+          {!isClient && (
+            <div className="bg-white border-4 border-black px-6 py-3 rounded-lg font-bold text-xl shadow-md">
+              Memuat...
+            </div>
+          )}
         </div>
       </div>
     );
@@ -138,13 +258,14 @@ const ComicTile = () => {
             {/* Tombol kembali ke panel komik */}
             <motion.button
               onClick={handleBack}
-              className="fixed bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-50 bg-white border-4 border-black rounded-full px-3 py-1 md:px-4 md:py-2 shadow-md hover:shadow-lg transition-all text-sm md:text-base font-bold"
+              className="fixed bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-50 bg-white border-4 border-black rounded-full px-3 py-1 md:px-4 md:py-2 shadow-md hover:shadow-lg transition-all text-sm md:text-base font-bold flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
+              <FaBook size={18} />
               Kembali ke Panel Komik
             </motion.button>
           </motion.div>
