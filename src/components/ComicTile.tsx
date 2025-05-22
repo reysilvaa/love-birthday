@@ -9,6 +9,8 @@ import { useClientOnly } from '@/hooks/useClientOnly';
 import { useClickSound, useBackgroundMusic } from '@/hooks/useAudio';
 import Image from 'next/image';
 import Letter from './Letter';
+import Future from './Future';
+import Birthday from './Birthday';
 
 // Komponen untuk memutar efek suara klik
 const AudioPlayer = () => {
@@ -36,6 +38,8 @@ const pages = [
   { id: 'letter', component: Letter, title: 'Pesan', subtitle: 'Coba lihat...', color: 'bg-gradient-radial from-sky-300 to-sky-500' },
   { id: 'photos', component: PhotoGallery, title: 'Galeri', subtitle: 'Kenangan Indah', color: 'bg-gradient-radial from-green-200 to-green-400' },
   { id: 'timeline', component: Timeline, title: 'Ucapan', subtitle: 'Perjalanan Cinta', color: 'bg-gradient-radial from-red-200 to-red-400' },
+  { id: 'future', component: Future, title: 'Masa Depan', subtitle: 'Petualangan Kita', color: 'bg-gradient-radial from-purple-200 to-purple-400' },
+  { id: 'birthday', component: Birthday, title: 'Ulang Tahun', subtitle: 'Spesial', color: 'bg-gradient-radial from-amber-200 to-amber-400' },
 ];
 
 // Panel text component untuk bagian atas kiri
@@ -98,7 +102,21 @@ const ComicTile = () => {
   }
 
   return (
-    <div className="min-h-screen w-full overflow-hidden relative">
+    <div className="min-h-screen w-full relative bg-[#fef8e5] flex flex-col items-center justify-center overflow-hidden">
+      {/* Comic Style Frame Border - responsif untuk mobile */}
+      <div className="hidden md:block absolute inset-10 border-[10px] border-black rounded-[40px] z-5"></div>
+      <div className="hidden md:block absolute inset-[46px] border-[5px] border-white rounded-[30px] opacity-70 z-5"></div>
+      
+      {/* Frame untuk mobile - lebih tipis */}
+      <div className="md:hidden absolute inset-2 border-[5px] border-black rounded-[20px] z-5"></div>
+      <div className="md:hidden absolute inset-[13px] border-[2px] border-white rounded-[15px] opacity-70 z-5"></div>
+      
+      {/* Halftone pattern overlay */}
+      <div className="absolute inset-0 bg-repeat opacity-5 mix-blend-multiply z-0" style={{ 
+        backgroundImage: `radial-gradient(#000 1px, transparent 1px)`,
+        backgroundSize: '15px 15px'
+      }}></div>
+      
       {/* Efek Suara */}
       <AudioPlayer />
       
@@ -137,122 +155,18 @@ const ComicTile = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="p-4 max-w-7xl mx-auto"
+            className="p-4 md:p-6 max-w-7xl mx-auto z-10 overflow-y-auto"
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-center mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8">
               Perjalanan Cinta Kita
             </h1>
             
             {/* Comic container dengan CSS Grid layout */}
-            <div className="comic-layout">
-              <style jsx>{`
-                .comic-layout {
-                  display: grid;
-                  grid-template-columns: repeat(12, 1fr);
-                  grid-auto-rows: minmax(80px, auto);
-                  gap: 8px;
-                }
-                
-                .panel-1 {
-                  grid-column: 1 / span 7;
-                  grid-row: 1 / span 3;
-                }
-                
-                .panel-2 {
-                  grid-column: 8 / span 5;
-                  grid-row: 1 / span 2;
-                }
-                
-                .panel-3 {
-                  grid-column: 8 / span 5;
-                  grid-row: 3 / span 2;
-                }
-                
-                .panel-4 {
-                  grid-column: 1 / span 5;
-                  grid-row: 4 / span 2;
-                }
-                
-                .panel-5 {
-                  grid-column: 6 / span 7;
-                  grid-row: 5 / span 2;
-                }
-                
-                .panel-6 {
-                  grid-column: 1 / span 5;
-                  grid-row: 6 / span 2;
-                }
-                
-                .panel-7 {
-                  grid-column: 6 / span 7;
-                  grid-row: 7 / span 3;
-                }
-                
-                .panel-8 {
-                  grid-column: 1 / span 5;
-                  grid-row: 8 / span 2;
-                }
-                
-                .panel-9 {
-                  grid-column: 1 / span 12;
-                  grid-row: 10 / span 2;
-                }
-                
-                @media (max-width: 768px) {
-                  .comic-layout {
-                    grid-template-columns: repeat(6, 1fr);
-                  }
-                  
-                  .panel-1 {
-                    grid-column: 1 / span 6;
-                    grid-row: 1 / span 2;
-                  }
-                  
-                  .panel-2 {
-                    grid-column: 1 / span 3;
-                    grid-row: 3 / span 1;
-                  }
-                  
-                  .panel-3 {
-                    grid-column: 4 / span 3;
-                    grid-row: 3 / span 1;
-                  }
-                  
-                  .panel-4 {
-                    grid-column: 1 / span 6;
-                    grid-row: 4 / span 2;
-                  }
-                  
-                  .panel-5 {
-                    grid-column: 1 / span 3;
-                    grid-row: 6 / span 1;
-                  }
-                  
-                  .panel-6 {
-                    grid-column: 4 / span 3;
-                    grid-row: 6 / span 1;
-                  }
-                  
-                  .panel-7 {
-                    grid-column: 1 / span 6;
-                    grid-row: 7 / span 2;
-                  }
-                  
-                  .panel-8 {
-                    grid-column: 1 / span 6;
-                    grid-row: 9 / span 1;
-                  }
-                  
-                  .panel-9 {
-                    grid-column: 1 / span 6;
-                    grid-row: 10 / span 2;
-                  }
-                }
-              `}</style>
+            <div className="grid grid-cols-6 md:grid-cols-12 auto-rows-[minmax(100px,auto)] gap-3 md:gap-3 md:px-1">
               
               {/* Panel 1 - Bigger panel */}
               <div 
-                className="comic-panel panel-1 border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform"
+                className="col-span-6 md:col-span-6 row-span-2 md:row-span-3 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[300px] md:h-auto"
                 onClick={() => handlePanelClick('hero')}
               >
                 <div className="absolute inset-0 z-0">
@@ -270,7 +184,7 @@ const ComicTile = () => {
               
               {/* Panel 2 */}
               <div 
-                className="comic-panel panel-2 border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform"
+                className="col-span-3 md:col-span-6 md:col-start-7 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[150px] md:h-[180px]"
                 onClick={() => handlePanelClick('letter')}
               >
                 <div className="absolute inset-0 z-0">
@@ -287,7 +201,7 @@ const ComicTile = () => {
               
               {/* Panel 3 */}
               <div 
-                className="comic-panel panel-3 border-4 border-black shadow-lg relative overflow-hidden cursor-pointer flex items-center justify-center transform hover:scale-[1.01] transition-transform"
+                className="col-span-3 md:col-span-6 md:col-start-7 md:row-start-2 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer flex items-center justify-center transform hover:scale-[1.01] transition-transform h-[150px] md:h-[180px]"
                 onClick={() => handlePanelClick('photos')}
               >
                 <div className="absolute inset-0 z-0">
@@ -303,7 +217,7 @@ const ComicTile = () => {
               
               {/* Panel 4 */}
               <div 
-                className="comic-panel panel-4 border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform"
+                className="col-span-3 md:col-span-4 md:col-start-1 md:row-start-4 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[150px] md:h-[180px]"
                 onClick={() => handlePanelClick('timeline')}
               >
                 <div className="absolute inset-0 z-0">
@@ -319,7 +233,8 @@ const ComicTile = () => {
               
               {/* Panel 5 */}
               <div 
-                className="comic-panel panel-5 border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform"
+                className="col-span-3 md:col-span-4 md:col-start-5 md:row-start-4 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[150px] md:h-[180px]"
+                onClick={() => handlePanelClick('future')}
               >
                 <div className="absolute inset-0 z-0">
                   <Image
@@ -329,63 +244,19 @@ const ComicTile = () => {
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
-                <ComicText text="Petualangan berikutnya" position="bottom-right" />
+                <ComicText text="Masa depan kita..." position="top-left" />
+                <ComicText text="...penuh petualangan" position="bottom-right" />
               </div>
               
-              {/* Panel 6 */}
+              {/* Panel 6 - THE END */}
               <div 
-                className="comic-panel panel-6 border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform"
-              >
-                <div className="absolute inset-0 z-0">
-                  <Image
-                    src="/images/comic-panel/3.png"
-                    alt="Panel 6"
-                    fill
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-                <ComicText text="Selalu bersamamu" position="top-left" />
-              </div>
-              
-              {/* Panel 7 - Bigger panel */}
-              <div 
-                className="comic-panel panel-7 border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform"
-              >
-                <div className="absolute inset-0 z-0">
-                  <Image
-                    src="/images/comic-panel/1.png"
-                    alt="Panel 7"
-                    fill
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-                <ComicText text="Setiap detik bersamamu..." position="top-left" />
-                <ComicText text="...adalah hadiah terindah" position="bottom-right" />
-              </div>
-              
-              {/* Panel 8 */}
-              <div 
-                className="comic-panel panel-8 border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform"
-              >
-                <div className="absolute inset-0 z-0">
-                  <Image
-                    src="/images/comic-panel/3.png"
-                    alt="Panel 8"
-                    fill
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-                <ComicText text="Cinta yang tumbuh" position="top-left" />
-              </div>
-              
-              {/* Panel 9 - THE END */}
-              <div 
-                className="comic-panel panel-9 border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform"
+                className="col-span-6 md:col-span-4 md:col-start-9 md:row-start-3 md:row-span-2 row-span-1 comic-panel border-4 border-black shadow-lg relative overflow-hidden cursor-pointer transform hover:scale-[1.01] transition-transform h-[150px] md:h-auto"
+                onClick={() => handlePanelClick('birthday')}
               >
                 <div className="absolute inset-0 z-0">
                   <Image
                     src="/images/comic-panel/end.png"
-                    alt="Panel 9"
+                    alt="Panel 6"
                     fill
                     style={{ objectFit: 'cover' }}
                   />
@@ -396,6 +267,26 @@ const ComicTile = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Custom scrollbar style */}
+      <style jsx global>{`
+        ::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.05);
+          border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.2);
+          border-radius: 4px;
+          border: 2px solid transparent;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: rgba(0, 0, 0, 0.3);
+        }
+      `}</style>
     </div>
   );
 };

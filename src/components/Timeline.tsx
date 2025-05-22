@@ -5,34 +5,46 @@ import { FaHeart, FaClock, FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa'
 
 const timelineEvents = [
   {
-    date: 'Januari 2022',
+    date: 'Agustus 2024',
     title: 'Pertemuan',
     description: 'Saat pertama kali kita bertemu. Tidak akan pernah kulupakan senyummu hari itu.',
     icon: <FaMapMarkerAlt className="text-[#FF80AB]" />
   },
   {
-    date: 'Februari 2022',
+    date: 'Agustus 2024',
     title: 'Mulai Dekat',
     description: 'Kita mulai lebih sering bersama. Setiap detik bersamamu terasa istimewa.',
     icon: <FaHeart className="text-[#FF80AB]" />
   },
   {
-    date: 'Maret 2022',
-    title: 'Kencan',
-    description: 'Makan malam romantis pertama kita. Lilin, musik, dan tatapan matamu yang tak terlupakan.',
+    date: '27 Agustus 2024',
+    title: 'Jadian',
+    description: 'Hari kita resmi menjadi sepasang kekasih. Hari yang mengubah seluruh hidupku.',
     icon: <FaCalendarAlt className="text-[#FF80AB]" />
   },
   {
-    date: 'April 2022',
-    title: 'Jadian',
-    description: 'Hari kita resmi menjadi sepasang kekasih. Hari yang mengubah seluruh hidupku.',
+    date: 'Desember 2024',
+    title: 'Hampir Putusnya',
+    description: 'Kita hampir putus. Hidupku menjadi gelap. Tapi syukurlah itu tidak terjadi.',
     icon: <FaHeart className="text-[#FF80AB]" />
   },
   {
-    date: 'Hari Ini',
-    title: 'Ultah Kamu',
-    description: 'Merayakan hari spesialmu dengan cinta. Dan berjanji akan terus mencintaimu tahun demi tahun.',
+    date: 'Januari 2025',
+    title: 'Ulang Tahunku',
+    description: 'Ultahku yang ke-21. Kado yang sangat berharga darimu. Terima kasih sudah menjadi bagian dari hidupku.',
     icon: <FaClock className="text-[#FF80AB]" />
+  },
+  {
+    date: 'Februari 2025',
+    title: 'Pantai',
+    description: 'Pantai yang indah. Perjalanan yang menyenangkan bersama kamu.',
+    icon: <FaHeart className="text-[#FF80AB]" />
+  },
+  {
+    date: '24 Mei 2025',
+    title: 'Hari Spesial',
+    description: 'Ulang tahunmu yang ke-21. Syukurlah aku bisa menjadi bagian dari hidupmu.',
+    icon: <FaHeart className="text-[#FF80AB]" />
   }
 ];
 

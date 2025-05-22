@@ -72,7 +72,7 @@ const ComicPanel: React.FC<ComicPanelProps> = ({
 
   return (
     <motion.div
-      className={`cursor-pointer relative overflow-hidden rounded-lg shadow-lg ${color} h-full`}
+      className={`cursor-pointer relative overflow-hidden rounded-lg shadow-lg ${color} h-full border-4 border-black`}
       whileHover={{ scale: 1.03, y: -5 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 300, damping: 10 }}
@@ -83,15 +83,18 @@ const ComicPanel: React.FC<ComicPanelProps> = ({
       role="button"
       aria-label={`Panel komik ${title}`}
     >
-      {/* Pola titik komik di latar belakang */}
-      <div className="absolute inset-0 bg-dots opacity-20"></div>
+      {/* Halftone pattern overlay */}
+      <div className="absolute inset-0 bg-repeat opacity-5 mix-blend-multiply z-0" style={{ 
+        backgroundImage: `radial-gradient(#000 1px, transparent 1px)`,
+        backgroundSize: '8px 8px'
+      }}></div>
       
       {children}
       
-      <div className="absolute bottom-2 left-2 right-2">
+      <div className="absolute bottom-2 left-2 right-2 z-10">
         {title && (
           <motion.div 
-            className="comic-caption bg-white px-3 py-1.5 rounded-lg shadow-md text-center font-semibold"
+            className="comic-caption bg-white px-3 py-1.5 rounded-lg shadow-md text-center font-semibold border-2 border-black"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -102,7 +105,7 @@ const ComicPanel: React.FC<ComicPanelProps> = ({
         
         {subtitle && (
           <motion.div 
-            className="comic-subcaption mt-1 text-white bg-black/40 px-2 py-0.5 rounded text-sm text-center"
+            className="comic-subcaption mt-1 text-white bg-black/60 px-2 py-0.5 rounded text-sm text-center"
             initial={{ y: 10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}

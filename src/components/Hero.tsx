@@ -399,7 +399,7 @@ const Hero: FC = () => {
             style={{ backgroundSize: '200% auto' }}
           >
             <span className="relative drop-shadow-[0_2px_0px_rgba(0,0,0,0.3)]">
-              Tiba-tiba...
+              Menuju Hari Spesial
             </span>
             
             {/* Comic-style highlight accent */}
@@ -469,7 +469,7 @@ const Hero: FC = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 2.2, duration: 0.5 }}
         >
-          Selamat Ulang Tahun!
+          Menunggu kamu Ulang Tahun!
         </motion.h2>
         
       </div>

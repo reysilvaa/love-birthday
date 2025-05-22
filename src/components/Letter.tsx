@@ -16,10 +16,10 @@ const Letter = () => {
   }, [controls, isInView]);
 
   const messages = [
-    'Di hari spesialmu ini, aku ingin kau tahu bahwa cintaku padamu semakin dalam setiap harinya. Kau, Annisa, adalah alasan mengapa aku percaya pada keajaiban cinta sejati.',
-    'Annisa, kehadiranmu dalam hidupku adalah hadiah terindah yang pernah aku terima. Senyummu, tawamu, bahkan caramu menatapku, semua itu sangat berharga bagiku.',
-    'Kau adalah bintang yang menerangi setiap sudut gelap dalam hidupku, Annisa. Bersamamu, aku merasa semua mimpi dan harapanku menjadi mungkin.',
-    'Suaramu adalah melodi terindah yang pernah aku dengar, Annisa. Setiap kenangan bersamamu seperti lagu yang terus mengalun dalam hatiku sepanjang waktu.'
+    'Di hari spesialmu ini, aku ingin kau tahu bahwa cintaku padamu semakin dalam setiap harinya. Kau, Sayangkuu, adalah alasan mengapa aku percaya pada keajaiban cinta sejati.',
+    'Sayangkuu, kehadiranmu dalam hidupku adalah hadiah terindah yang pernah aku terima. Senyummu, tawamu, bahkan caramu menatapku, semua itu sangat berharga bagiku.',
+    'Kau adalah bintang yang menerangi setiap sudut gelap dalam hidupku, Sayangkuu. Bersamamu, aku merasa semua mimpi dan harapanku menjadi mungkin.',
+    'Suaramu adalah melodi terindah yang pernah aku dengar, Sayangkuu. Setiap kenangan bersamamu seperti lagu yang terus mengalun dalam hatiku sepanjang waktu.'
   ];
 
   const currentDate = new Date().toLocaleDateString('id-ID', {
@@ -133,7 +133,7 @@ const Letter = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              Surat Untuk Annisa
+              Surat Untuk Sayangkuu
             </motion.h1>
             
             <div className="flex justify-center">
@@ -163,7 +163,7 @@ const Letter = () => {
               variants={itemVariants} 
               className="mb-1 sm:mb-1.5 md:mb-2 font-semibold text-black"
             >
-              Yang tercinta Annisa,
+              Yang tercinta Sayangkuu,
             </motion.p>
             
             {messages.map((message, index) => (
@@ -204,6 +204,8 @@ const Letter = () => {
                 transition={{ delay: 1 }}
               >
                 Kekasihmu
+                <br /> 
+                Reynald Silva
               </motion.p>
             </motion.div>
           </motion.div>
@@ -244,7 +246,7 @@ const Letter = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
         >
-          <FaHeart className="inline text-[#881337] mx-0.5" size={6} /> <span className="align-middle">Aku mencintaimu, Annisa!</span> <FaHeart className="inline text-[#881337] mx-0.5" size={6} />
+          <FaHeart className="inline text-[#881337] mx-0.5" size={6} /> <span className="align-middle">Aku mencintaimu, Sayangkuu!</span> <FaHeart className="inline text-[#881337] mx-0.5" size={6} />
         </motion.div>
       </motion.div>
 
